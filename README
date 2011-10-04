@@ -68,7 +68,7 @@ In general we are able to write code for data view or pie charts , but it has fo
 Customizing the Google Data table :
 ------------------------------------
 
-Before this I have created new application and configure with database and created products scaffold . After all are working I created google data table .
+Before this I have created new application , configure database and created products scaffold . After all are working I created google data table .
 I am showin results at  below url :
 http://localhost:3000/items/products.
 
@@ -88,6 +88,8 @@ Google Data Table :
 
 It shows data in two dimension . Here I am explaining about that topic with a example .
 
+In Items/prodcucts.html.erb
+-----------------------------
 <script type="text/javascript" src="http://www.google.com/jsapi">
 // This script is necessary for working with this api so include compulsary.
 </script>
