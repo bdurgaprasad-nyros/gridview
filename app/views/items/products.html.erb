@@ -1,0 +1,111 @@
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1', {packages: ['table']});
+    </script>
+    <script type="text/javascript">
+    var visualization;
+    var data;
+
+    var options = {'showRowNumber': false};
+    function drawVisualization() {
+      // Create and populate the data table.
+      var dataAsJson =
+      {cols:[
+     
+		{id:'A',label:'Product Name',type:'string'},
+        {id:'B',label:'Description',type:'string'},
+        {id:'C',label:'Price',type:'number'}],
+      rows:[
+  
+  	<% @products.each_with_index do |product,i| %>
+	     
+	    {c:[		
+		
+		{v:'<%=  product.name %>'},
+	    {v:'<%=  product.descrtiption %>'},
+	    {v:'<%=  product.price %>'}
+		]}		
+		<% if !(@products.size - i == 1)   %>
+		   ,
+		<% end %>		 
+		 
+    <% end %> 
+     ]};
+      data = new google.visualization.DataTable(dataAsJson);
+      
+      // Set paging configuration options
+      // Note: these options are changed by the UI controls in the example.
+      options['page'] = 'enable';
+      options['pageSize'] = 2;
+      options['pagingSymbols'] = {prev: 'prev', next: 'next'};
+      options['pagingButtonsConfiguration'] = 'auto';
+      
+      // Create and draw the visualization.
+      visualization = new google.visualization.Table(document.getElementById('table'));
+      draw();
+    }
+   
+    // This function for fetching the data  
+    function draw() {
+      visualization.draw(data, options);  
+    }
+    
+
+    google.setOnLoadCallback(drawVisualization);
+
+    // sets the number of pages according to the user selection.
+    function setNumberOfPages(value) {
+      if (value) {
+        options['pageSize'] = parseInt(value, 10);
+        options['page'] = 'enable';
+      } else {
+        options['pageSize'] = null;
+        options['page'] = null;  
+      }
+      draw();
+    }
+
+    // Sets custom paging symbols "Prev"/"Next"
+    function setCustomPagingButtons(toSet) {
+      options['pagingSymbols'] = toSet ? {next: 'next', prev: 'prev'} : null;
+      draw();  
+    }
+
+    function setPagingButtonsConfiguration(value) {
+      options['pagingButtonsConfiguration'] = value;
+      draw();
+    }
+    
+    </script>
+	
+	
+	<div style="margin-bottom: 10px; padding: 5px; border: 1px solid gray; background-color: buttonface;">
+      <span> Configure the paging options in the table</span><br />
+      <form action="">
+        <span style="font-size: 12px;">Number of rows:</span>
+        <select style="font-size: 12px" onchange="setNumberOfPages(this.value)">
+          <option value="">No paging</option>
+          <option value="1">1</option>
+		   <option value="2">2</option>
+          <option value="5">5</option>
+          <option value="9">9</option>
+          <option selected="selected" value="10">10</option>
+          <option value="100">100</option>
+        </select>
+        <span style="padding-left: 5px; font-size: 12px;">Custom paging symbols </span>
+        <input type="checkbox" checked="checked" onclick="setCustomPagingButtons(this.checked)">
+        <span style="padding-left: 5px; font-size: 12px">Configure buttons enabled/disabled</span>
+          <select style="font-size: 12px" id='enable-paging-buttons' onchange='setPagingButtonsConfiguration(this.value)'>
+            <option value=''>Default (auto)</option>
+            <option value='prev'>prev</option>
+            <option value='next'>next</option>
+            <option value='both'>both</option>
+         </select>
+      </form>
+      </div>
+
+
+	
+	            <!--//Google Data table styles started-->
+            <div id="table"></div>
+            <!--//Google Data table styles ended-->
