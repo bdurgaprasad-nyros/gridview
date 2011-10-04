@@ -1,256 +1,234 @@
-== Welcome to Rails
+jquery/README
+== Welcome to Rails Application with Google chart table tool  
 
-Rails is a web-application framework that includes everything needed to create
-database-backed web applications according to the Model-View-Control pattern.
-
-This pattern splits the view (also called the presentation) into "dumb"
-templates that are primarily responsible for inserting pre-built data in between
-HTML tags. The model contains the "smart" domain objects (such as Account,
-Product, Person, Post) that holds all the business logic and knows how to
-persist themselves to a database. The controller handles the incoming requests
-(such as Save New Account, Update Product, Show Post) by manipulating the model
-and directing data to the view.
-
-In Rails, the model is handled by what's called an object-relational mapping
-layer entitled Active Record. This layer allows you to present the data from
-database rows as objects and embellish these data objects with business logic
-methods. You can read more about Active Record in
-link:files/vendor/rails/activerecord/README.html.
-
-The controller and view are handled by the Action Pack, which handles both
-layers by its two parts: Action View and Action Controller. These two layers
-are bundled in a single package due to their heavy interdependence. This is
-unlike the relationship between the Active Record and Action Pack that is much
-more separate. Each of these packages can be used independently outside of
-Rails. You can read more about Action Pack in
-link:files/vendor/rails/actionpack/README.html.
-
-
-== Getting Started
-
-1. At the command prompt, create a new Rails application:
-       <tt>rails new myapp</tt> (where <tt>myapp</tt> is the application name)
-
-2. Change directory to <tt>myapp</tt> and start the web server:
-       <tt>cd myapp; rails server</tt> (run with --help for options)
-
-3. Go to http://localhost:3000/ and you'll see:
-       "Welcome aboard: You're riding Ruby on Rails!"
-
-4. Follow the guidelines to start developing your application. You can find
-the following resources handy:
-
-* The Getting Started Guide: http://guides.rubyonrails.org/getting_started.html
-* Ruby on Rails Tutorial Book: http://www.railstutorial.org/
-
-
-== Debugging Rails
-
-Sometimes your application goes wrong. Fortunately there are a lot of tools that
-will help you debug it and get it back on the rails.
-
-First area to check is the application log files. Have "tail -f" commands
-running on the server.log and development.log. Rails will automatically display
-debugging and runtime information to these files. Debugging info will also be
-shown in the browser on requests from 127.0.0.1.
-
-You can also log your own messages directly into the log file from your code
-using the Ruby logger class from inside your controllers. Example:
-
-  class WeblogController < ActionController::Base
-    def destroy
-      @weblog = Weblog.find(params[:id])
-      @weblog.destroy
-      logger.info("#{Time.now} Destroyed Weblog ID ##{@weblog.id}!")
-    end
-  end
-
-The result will be a message in your log file along the lines of:
-
-  Mon Oct 08 14:22:29 +1000 2007 Destroyed Weblog ID #1!
-
-More information on how to use the logger is at http://www.ruby-doc.org/core/
-
-Also, Ruby documentation can be found at http://www.ruby-lang.org/. There are
-several books available online as well:
-
-* Programming Ruby: http://www.ruby-doc.org/docs/ProgrammingRuby/ (Pickaxe)
-* Learn to Program: http://pine.fm/LearnToProgram/ (a beginners guide)
-
-These two books will bring you up to speed on the Ruby language and also on
-programming in general.
-
-
-== Debugger
-
-Debugger support is available through the debugger command when you start your
-Mongrel or WEBrick server with --debugger. This means that you can break out of
-execution at any point in the code, investigate and change the model, and then,
-resume execution! You need to install ruby-debug to run the server in debugging
-mode. With gems, use <tt>sudo gem install ruby-debug</tt>. Example:
-
-  class WeblogController < ActionController::Base
-    def index
-      @posts = Post.find(:all)
-      debugger
-    end
-  end
-
-So the controller will accept the action, run the first line, then present you
-with a IRB prompt in the server window. Here you can do things like:
-
-  >> @posts.inspect
-  => "[#<Post:0x14a6be8
-          @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>,
-       #<Post:0x14a6620
-          @attributes={"title"=>"Rails", "body"=>"Only ten..", "id"=>"2"}>]"
-  >> @posts.first.title = "hello from a debugger"
-  => "hello from a debugger"
-
-...and even better, you can examine how your runtime objects actually work:
-
-  >> f = @posts.first
-  => #<Post:0x13630c4 @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>
-  >> f.
-  Display all 152 possibilities? (y or n)
-
-Finally, when you're ready to resume execution, you can enter "cont".
-
-
-== Console
-
-The console is a Ruby shell, which allows you to interact with your
-application's domain model. Here you'll have all parts of the application
-configured, just like it is when the application is running. You can inspect
-domain models, change values, and save to the database. Starting the script
-without arguments will launch it in the development environment.
-
-To start the console, run <tt>rails console</tt> from the application
-directory.
-
-Options:
-
-* Passing the <tt>-s, --sandbox</tt> argument will rollback any modifications
-  made to the database.
-* Passing an environment name as an argument will load the corresponding
-  environment. Example: <tt>rails console production</tt>.
-
-To reload your controllers and models after launching the console run
-<tt>reload!</tt>
-
-More information about irb can be found at:
-link:http://www.rubycentral.com/pickaxe/irb.html
-
-
-== dbconsole
-
-You can go to the command line of your database directly through <tt>rails
-dbconsole</tt>. You would be connected to the database with the credentials
-defined in database.yml. Starting the script without arguments will connect you
-to the development database. Passing an argument will connect you to a different
-database, like <tt>rails dbconsole production</tt>. Currently works for MySQL,
-PostgreSQL and SQLite 3.
+   This application uses with google chart table for showing results in gridview .
 
 == Description of Contents
 
-The default directory structure of a generated Ruby on Rails application:
+   In general we need to show grid view results . For this we have to write some styles , design and coding part . But Google visual chart tools provides table tool for showing results in grid view .
+  
+I followed below posts and customize the code :
+-----------------------------------------------
+http://www.rorexperts.com/google-visualization-api-data-table-in-ruby-on-rails-t2383.html
+http://www.rorexperts.com/google-data-table-using-google-visulization-api-t2384.html
 
-  |-- app
-  |   |-- controllers
-  |   |-- helpers
-  |   |-- mailers
-  |   |-- models
-  |   `-- views
-  |       `-- layouts
-  |-- config
-  |   |-- environments
-  |   |-- initializers
-  |   `-- locales
-  |-- db
-  |-- doc
-  |-- lib
-  |   `-- tasks
-  |-- log
-  |-- public
-  |   |-- images
-  |   |-- javascripts
-  |   `-- stylesheets
-  |-- script
-  |-- test
-  |   |-- fixtures
-  |   |-- functional
-  |   |-- integration
-  |   |-- performance
-  |   `-- unit
-  |-- tmp
-  |   |-- cache
-  |   |-- pids
-  |   |-- sessions
-  |   `-- sockets
-  `-- vendor
-      `-- plugins
+   Google Visualization API :
+------------------------------
 
-app
-  Holds all the code that's specific to this particular application.
+This shows results in good format by the Google Visualization API .
 
-app/controllers
-  Holds controllers that should be named like weblogs_controller.rb for
-  automated URL mapping. All controllers should descend from
-  ApplicationController which itself descends from ActionController::Base.
+What is this api ?
+--------------------
+It is a api shows results in piecharts, barcharts , data views tables
 
-app/models
-  Holds models that should be named like post.rb. Models descend from
-  ActiveRecord::Base by default.
+1. It shows results as a table(Grid view or two dimnesions) data retrives from a spread sheet or Json object with google visulaization data table settings also .
 
-app/views
-  Holds the template files for the view that should be named like
-  weblogs/index.html.erb for the WeblogsController#index action. All views use
-  eRuby syntax by default.
+2. A common interface to expose data and provide data to visualizations on the web.
 
-app/views/layouts
-  Holds the template files for layouts to be used with views. This models the
-  common header/footer method of wrapping views. In your views, define a layout
-  using the <tt>layout :default</tt> and create a file named default.html.erb.
-  Inside default.html.erb, call <% yield %> to render the view using this
-  layout.
+3. Easy to developers developing and reuse .
 
-app/helpers
-  Holds view helpers that should be named like weblogs_helper.rb. These are
-  generated for you automatically when using generators for controllers.
-  Helpers can be used to wrap functionality for your views into methods.
+4. It supports sorting by default .
 
-config
-  Configuration files for the Rails environment, the routing map, the database,
-  and other dependencies.
+5. It supports pagination .
 
-db
-  Contains the database schema in schema.rb. db/migrate contains all the
-  sequence of Migrations for your schema.
+6. It is workinmg with Google Java script files , like api .
 
-doc
-  This directory is where your application documentation will be stored when
-  generated using <tt>rake doc:app</tt>
 
-lib
-  Application specific libraries. Basically, any kind of custom code that
-  doesn't belong under controllers, models, or helpers. This directory is in
-  the load path.
 
-public
-  The directory available for the web server. Contains subdirectories for
-  images, stylesheets, and javascripts. Also contains the dispatchers and the
-  default HTML files. This should be set as the DOCUMENT_ROOT of your web
-  server.
+Why we use this  ?
+--------------------
 
-script
-  Helper scripts for automation and generation.
+In general we are able to write code for data view or pie charts , but it has following uses , easy to use and fast development .
 
-test
-  Unit and functional tests along with fixtures. When using the rails generate
-  command, template test files will be generated for you and placed in this
-  directory.
+1. It is a api , so we have no burden .
 
-vendor
-  External libraries that the application depends on. Also includes the plugins
-  subdirectory. If the app has frozen rails, those gems also go here, under
-  vendor/rails/. This directory is in the load path.
+2. It is free of cost .
+
+3. It is customizable and over rightable styles.
+
+4. It has cross browser compatability .
+
+5. It supports grouping .
+
+6. It supports pagination with number of rows per page from spread sheet or json format also .
+
+7. It have good styles .
+
+8. Insert html elements easily .
+
+9. It supports all formats like arrow, bar , number ,date , number and string formats
+
+10. It works fast comparitive to our application sorting or pagination.
+
+11. It stores data as data cells like html table .
+
+12. Each colomn must have same data type. 
+
+
+Customizing the Google Data table :
+------------------------------------
+
+In controller :
+------------------  
+class ItemsController < ApplicationController
+	# This for  supply data to google table .
+	def products
+	    @products = Product.all
+	
+	end	
+end
+
+
+Google Data Table :
+------------------------
+
+It shows data in two dimension . Here I am explaining about that topic with a example .
+
+<script type="text/javascript" src="http://www.google.com/jsapi">
+// This script is necessary for working with this api so include compulsary.
+</script>
+<script type="text/javascript">
+google.load('visualization', '1', {packages: ['table']});
+// Here I am using table view data . Actullay Google Visulization API supports piecharts , barcharts , time lines based on requirement we have to include compulsary .
+</script>
+
+<script type="text/javascript">
+// below vsiulization and data variables are using later , here just declared
+var visualization;
+var data;
+
+// Set options here
+var options = {'showRowNumber': false};
+
+// Create table with data in json format with google data table syntaxes .
+
+function drawVisualization() {
+
+// Create and populate the data table.
+
+var dataAsJson =
+
+{
+
+// Declare column with id , label and data type .
+// Here this data type apply for whole this column .
+
+cols:[
+
+{id:'A',label:'Product Name',type:'string'},
+{id:'B',label:'Description',type:'string'},
+{id:'C',label:'Price',type:'number'}],
+
+
+// Here I customized view page with required details . If you have //static data follow below type is very easy .
+
+// rows: [{c:[{v: 'Work'}, {v: 11}]},
+// {c:[{v: 'Eat'}, {v: 2}]}
+// ]
+
+rows:[
+
+<% @products.each_with_index do |product,i| %>
+
+{c:[
+
+// Here we are able to call helper methods easily .
+{v:'<%= product.name %>'},
+{v:'<%= product.descrtiption %>'},
+{v:'<%= product.price %>'}
+]}
+
+// This loop for every row end s with comma and last row shold not have comma .
+
+<% if !(@products.size - i == 1) %>
+,
+<% end %>
+
+<% end %>
+]};
+
+// Below DataTable is a constructor it makes a mutable table with given values .
+
+data = new google.visualization.DataTable(dataAsJson);
+
+// Set paging configuration options
+// Note: these options are changed by the UI controls in the example.
+options['page'] = 'enable';
+options['pageSize'] = 2;
+options['pagingSymbols'] = {prev: 'prev', next: 'next'};
+options['pagingButtonsConfiguration'] = 'auto';
+
+// Create and draw the visualization.
+// here add data table details and properties to given div name
+visualization = new
+google.visualization.Table(document.getElementById('table'));
+draw();
+}
+
+// This is main function for fetching the all data and shows
+function draw() {
+
+visualization.draw(data, options);
+}
+
+// On laod page the above function invoke and display the data in table representation .
+
+google.setOnLoadCallback(drawVisualization);
+
+// sets the number of pages according to the user selection.
+function setNumberOfPages(value) {
+if (value) {
+options['pageSize'] = parseInt(value, 10);
+options['page'] = 'enable';
+} else {
+options['pageSize'] = null;
+options['page'] = null;
+}
+draw();
+}
+
+// Sets custom paging symbols "Prev"/"Next"
+function setCustomPagingButtons(toSet) {
+options['pagingSymbols'] = toSet ? {next: 'next', prev: 'prev'} : null;
+draw();
+}
+
+function setPagingButtonsConfiguration(value) {
+options['pagingButtonsConfiguration'] = value;
+draw();
+}
+
+</script>
+
+
+<div style="margin-bottom: 10px; padding: 5px; border: 1px solid gray; background-color: buttonface;">
+<span> Configure the paging options in the table</span><br />
+<form action="">
+<span style="font-size: 12px;">Number of rows:</span>
+<select style="font-size: 12px" onchange="setNumberOfPages(this.value)">
+<option value="">No paging</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="5">5</option>
+<option value="9">9</option>
+<option selected="selected" value="10">10</option>
+<option value="100">100</option>
+</select>
+<span style="padding-left: 5px; font-size: 12px;">Custom paging symbols </span>
+<input type="checkbox" checked="checked" onclick="setCustomPagingButtons(this.checked)">
+<span style="padding-left: 5px; font-size: 12px">Configure buttons enabled/disabled</span>
+<select style="font-size: 12px" id='enable-paging-buttons' onchange='setPagingButtonsConfiguration(this.value)'>
+<option value=''>Default (auto)</option>
+<option value='prev'>prev</option>
+<option value='next'>next</option>
+<option value='both'>both</option>
+</select>
+</form>
+</div>
+
+
+
+<!--//Google Data table styles started-->
+<div id="table"></div>
+<!--//Google Data table styles ended-->
+
